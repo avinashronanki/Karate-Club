@@ -7,13 +7,22 @@
 # model.fit(g)
 # embedding = model.get_embedding()
 # print(embedding)
+#
+# import networkx as nx
+# from karateclub.node_embedding.neighbourhood import Walklets
+#
+# g = nx.newman_watts_strogatz_graph(100, 20, 0.05)
+#
+# model = Walklets()
+# model.fit(g)
+# embedding = model.get_embedding()
+# print(embedding)
 
 import networkx as nx
-from karateclub.node_embedding.neighbourhood import Walklets
+from karateclub import LabelPropagation
 
-g = nx.newman_watts_strogatz_graph(100, 20, 0.05)
+graph = nx.newman_watts_strogatz_graph(100, 20, 0.05)
 
-model = Walklets()
-model.fit(g)
-embedding = model.get_embedding()
-print(embedding)
+model = LabelPropagation()
+model.fit(graph)
+cluster_membership = model.get_memberships()
